@@ -111,7 +111,7 @@ class TrainEnvironment:
             return False
         
     def step(self,action):
-        skip = 1
+        skip = 6
         self.train_index += skip
         if self.train_index >= self.end_index-1 : 
             self.train_index = self.end_index-1 
@@ -140,7 +140,7 @@ if __name__ == "__main__":
     agent.load("agent_model.h5")
     num_index = all_index - state_size
     env = TrainEnvironment(X_train, num_index)
-    batch_size = 32 
+    batch_size = 10 
     test_profit = []
     
     for e in range(EPISODES):
@@ -161,10 +161,10 @@ if __name__ == "__main__":
                       .format(e, EPISODES, t, agent.epsilon))
                 print('----------------------------- End Episode --------------------------')
                 break
-            """
+            
             if len(agent.memory) > batch_size:
                 agent.replay(batch_size)
-            """
+            
             end_time = str(datetime.datetime.now().time())
             
             watch_result(e , start_time, end_time, env.train_index, end_index-start_index, env.get_action(action), reward ,env.profit)  
@@ -172,7 +172,7 @@ if __name__ == "__main__":
             test_profit.append(env.reward*1000)
     test_profit = np.array(test_profit)
     
-    # agent.save("agent_model.h5")
+    agent.save("agent_model.h5")
     plt.plot(test_profit, color = 'blue', label = 'Profit')
     plt.title('Profit')
     plt.xlabel('Time')
