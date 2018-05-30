@@ -36,7 +36,7 @@ class DQNAgent:
         model.add(LSTM(30, return_sequences = True, input_shape = (self.state_size,1), activation='relu'))
         model.add(LSTM(18, return_sequences = True,  activation='relu'))
         model.add(LSTM(6, activation='relu'))
-        model.add(Dense(3, activation='linear'))
+        model.add(Dense(2, activation='linear'))
         model.compile(loss='mean_squared_error', optimizer=Adam(lr=self.learning_rate))
         return model
 
@@ -47,9 +47,10 @@ class DQNAgent:
     def remember(self, state, action, reward, next_state, done):
         self.memory.append((state, action, reward, next_state, done))
    
-    def act(self, state):
-        if np.random.rand() <= self.epsilon:
-            return random.randrange(self.action_size)
+    def act(self, state, train = True):
+        if train : 
+            if np.random.rand() <= self.epsilon:
+                return random.randrange(self.action_size)
         act_values = self.model.predict(state)
         return np.argmax(act_values[0]) #return action 
     

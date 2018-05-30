@@ -15,7 +15,7 @@ EPISODES = 300
 MARGIN = 1000
 
 start_index = 45    #2010.01.01 00:00
-end_index = 3161+1  #2012.12.30 20:00
+end_index = 3161+1  #2011.12.30 20:00
 dataset = pd.read_csv('EURUSD_4H.csv')
 train_data = dataset.iloc[start_index:end_index,5:6]
 
@@ -33,7 +33,7 @@ class TrainEnvironment:
         self.train_data = data
         self.train_index = 0 
         self.end_index = num_index-1
-        self.loss_limit = 0.01 # force sell 
+        self.loss_limit = 0.001 # force sell 
         
         self.profit = 0
         self.reward = 0
