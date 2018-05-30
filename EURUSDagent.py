@@ -21,7 +21,7 @@ class DQNAgent:
         self.state_size = state_size
         self.epsilon = 1.0  # exploration rate
         self.gamma = 0.95   # discount rate 
-        self.action_size = 2 
+        self.action_size = 3 
         self.epsilon_min = 0.01
         self.epsilon_decay = 0.99
         
