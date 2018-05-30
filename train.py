@@ -15,7 +15,7 @@ EPISODES = 300
 MARGIN = 1000
 
 start_index = 45    #2010.01.01 00:00
-end_index = 3161+1  #2012.12.30 20:00
+end_index = 3161+1  #2011.12.30 20:00
 dataset = pd.read_csv('EURUSD_4H.csv')
 train_data = dataset.iloc[start_index:end_index,5:6]
 
